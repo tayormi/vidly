@@ -1,3 +1,5 @@
+const winston = require('winston');
+const expressWinson = require('express-winston');
 require('express-async-errors');
 const error = require('./middleware/error');
 const config = require('config')
@@ -18,9 +20,9 @@ if (!config.get('jwtPrivateKey')) {
     console.error('Fatal ERROR: jwtPrivateKey is not defined.');
     process.exit(1);
 }
-mongoose.connect('mongodb://localhost/vidly', { useUnifiedTopology: true, useNewUrlParser: true})
-.then(() => console.log('Connected to MongoDb...'))
-.catch(err => console.err('Error connecting to MongoDb'))
+mongoose.connect('mongodb://localhost/vidly', { useUnifiedTopology: true, useNewUrlParser: true })
+    .then(() => console.log('Connected to MongoDb...'))
+    .catch(err => console.err('Error connecting to MongoDb'))
 
 app.use(express.json());
 app.use('/api/genres', genres);
