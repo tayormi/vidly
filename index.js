@@ -1,5 +1,5 @@
+require('winston-mongodb');
 const winston = require('winston');
-const expressWinson = require('express-winston');
 require('express-async-errors');
 const error = require('./middleware/error');
 const config = require('config')
