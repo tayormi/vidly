@@ -1,5 +1,6 @@
 require('winston-mongodb');
 const winston = require('winston');
+const logger = require('./common/logger');
 require('express-async-errors');
 const error = require('./middleware/error');
 const config = require('config')
@@ -14,6 +15,12 @@ const movies = require('./routes/movies');
 const rentals = require('./routes/rentals');
 const express = require('express');
 const app = express();
+
+process.on('uncaughtException', (ex) => {
+    console.log('We got an uncaught exception');
+
+    logger.error(ex.message, ex);
+})
 
 
 if (!config.get('jwtPrivateKey')) {

@@ -4,7 +4,7 @@ const logger = createLogger({
     transports: [
         new transports.Console(),
         new transports.File({ filename: 'logfile.log' }),
-        new transports.MongoDB({ db: 'mongodb://localhost/vidly' })
+        new transports.MongoDB({ db: 'mongodb://localhost/vidly', level: 'error' })
       ]
 });
 
