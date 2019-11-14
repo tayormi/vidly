@@ -17,11 +17,13 @@ const express = require('express');
 const app = express();
 
 process.on('uncaughtException', (ex) => {
-    console.log('We got an uncaught exception');
-
     logger.error(ex.message, ex);
+    process.exit(1);
 })
-
+process.on('unhandledRejection', (ex) => {
+    logger.error(ex.message, ex);
+    process.exit(1);
+})
 
 if (!config.get('jwtPrivateKey')) {
     console.error('Fatal ERROR: jwtPrivateKey is not defined.');
